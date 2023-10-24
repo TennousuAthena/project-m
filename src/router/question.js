@@ -8,10 +8,10 @@ import { useNavigate, useLocation  } from 'react-router-dom';
 export default function Question() {
   const location = useLocation();
   let locarr = location.pathname.split('/');
-  locarr.pop();
+  let initPage = locarr.pop();
   const subloc = locarr.join('/');
   const navigate = useNavigate();
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(initPage);
 
   useEffect(() => {
     navigate(`${subloc}/${page}`);
