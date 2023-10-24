@@ -1,5 +1,6 @@
 import { Arrow, GuideO, Exchange, TodoListO } from "@react-vant/icons";
 import { Card, Image, Button, Toast, Space, Typography, Tag, Divider } from "react-vant";
+import { useNavigate  } from 'react-router-dom';
 
 export default function Home(){
     return (<div>
@@ -16,7 +17,6 @@ export default function Home(){
         </Card.Cover>
         <Card.Header
           extra={<Arrow />}
-          onClick={() => Toast.info("点击了Header区域")}
         >
           马克思主义基本原理
         </Card.Header>
@@ -36,7 +36,6 @@ export default function Home(){
         </Card.Cover>
         <Card.Header
           extra={<Arrow />}
-          onClick={() => Toast.info("点击了Header区域")}
         >
           毛泽东思想和中国特色社会主义理论体系概论
         </Card.Header>
@@ -56,7 +55,7 @@ export default function Home(){
 
 
 function ButtonGroup(props){
-
+  const navigate = useNavigate();
     return (
         <Space>
         {/* <Button round size="small">更多</Button> */}
@@ -65,7 +64,7 @@ function ButtonGroup(props){
           round
           color="linear-gradient(to right, rgb(54, 209, 220), rgb(91, 134, 229))"
           size="small"
-          onClick={()=>Toast.info(props.subject)}
+          onClick={()=>navigate(`${props.subject}/顺序/1`)}
         >
           顺序练习
         </Button>
