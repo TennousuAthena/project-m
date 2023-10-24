@@ -6,7 +6,7 @@ function InitSentry(){
         integrations: [
             new Sentry.BrowserTracing({
             // Set 'tracePropagationTargets' to control for which URLs distributed tracing should be enabled
-            tracePropagationTargets: ["localhost", /^https:\/\/yourserver\.io\/api/],
+            tracePropagationTargets: ["localhost", /^https:\/\/project-m\.pages\.io\//, /^https:\/\/m\.neu-edu\.cn\//],
             }),
             new Sentry.Replay(),
         ],
