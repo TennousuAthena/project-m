@@ -58,7 +58,7 @@ export default function Question(props) {
           <Tag type="primary" style={{ marginRight: '1em' }}>
             单选
           </Tag>
-          {pageData.Description}
+          <span style={{ fontSize: '1.3em' }}> {pageData.Description} </span>
         </Card.Header>
         <Card.Body>
           <Form ref={formRef} layout="horizontal">

@@ -23,6 +23,17 @@ code {
   user-select: none;
 }
 
+.rv-field__children {
+  display: block;
+}
+
+.rv-selector__item {
+  font-size: 1.2em;
+  margin-top: 12px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
 /* 移动设备 */
 @media (max-width: 768px) {
   .container {
