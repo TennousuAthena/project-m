@@ -8,7 +8,6 @@ function getQuestionLen() {
 function questionData(subject, showMode, id) {
   switch (subject) {
     case '马原': {
-      console.log(marx[id]);
       return marx[id];
     }
     case '毛概': {

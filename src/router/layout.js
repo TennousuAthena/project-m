@@ -2,6 +2,7 @@ import { HomeO, Search, SettingO, NotesO } from '@react-vant/icons';
 import { Toast, NavBar } from 'react-vant';
 import { Tabbar } from 'react-vant';
 import { useNavigate } from 'react-router-dom';
+
 import './index.css';
 
 export default function Layout(props) {
@@ -9,6 +10,7 @@ export default function Layout(props) {
   return (
     <div>
       <NavBar
+        safeAreaInsetTop
         className="navbar"
         title="Project M"
         leftText="返回"

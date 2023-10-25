@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Card } from 'react-vant';
 import { Pagination, Divider, Form, Selector, Badge } from 'react-vant';
 import { useNavigate, useLocation } from 'react-router-dom';
@@ -22,14 +22,19 @@ export default function Question(props) {
 
   useEffect(() => {
     navigate(`${subloc}/${page}`);
+
+    if (formRef.current) {
+      formRef.current.resetFields();
+    }
   }, [page, navigate]);
 
   const options = pageData.Choice.map((item, index) => {
     const label = item;
     const value = String.fromCharCode(65 + index); // 使用String.fromCharCode将索引转换为对应的字母(A, B, C, D, ...)
-
     return { label, value };
   });
+
+  const formRef = useRef(null);
 
   return (
     <>
@@ -39,7 +44,7 @@ export default function Question(props) {
           {pageData.Description}
         </Card.Header>
         <Card.Body>
-          <Form layout="vertical">
+          <Form ref={formRef} layout="horizontal">
             <Form.Item name="single">
               <Selector options={options} />
             </Form.Item>
