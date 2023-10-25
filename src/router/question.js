@@ -32,6 +32,8 @@ export default function Question(props) {
   }
 
   let pageData = questionData(props.subject, '', page);
+  const isSingleChoice = pageData.Answer.length == 1;
+  console.log(pageData)
 
   useEffect(() => {
     navigate(`${subloc}/${page}`);
@@ -55,15 +57,13 @@ export default function Question(props) {
     <div style={{ height: 'calc(100vh - 110px)' }}>
       <Card round>
         <Card.Header>
-          <Tag type="primary" style={{ marginRight: '1em' }}>
-            单选
-          </Tag>
+          <ChoiceTag single={isSingleChoice} />
           <span style={{ fontSize: '1.3em' }}> {pageData.Description} </span>
         </Card.Header>
         <Card.Body>
           <Form ref={formRef} layout="horizontal">
             <Form.Item name="single">
-              <Selector options={options}></Selector>
+              <Selector options={options} multiple={!isSingleChoice}></Selector>
             </Form.Item>
           </Form>
         </Card.Body>
@@ -98,4 +98,19 @@ export default function Question(props) {
       </Sticky>
     </div>
   );
+}
+
+const ChoiceTag = (props) => {
+  if(props.single){
+    return (  <Tag type="primary" style={{ marginRight: '1em', marginBottom: '0.5em' }}>
+    单选
+  </Tag>);
+  }else{
+    return(
+    <Tag type="warning" style={{ marginRight: '1em', marginBottom: '0.5em' }}>
+    多选
+  </Tag>
+    )
+  }
+
 }
