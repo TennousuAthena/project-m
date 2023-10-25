@@ -8,10 +8,10 @@ function getQuestionLen() {
 function questionData(subject, showMode, id) {
   switch (subject) {
     case '马原': {
-      return marx[id];
+      return marx[id - 1];
     }
     case '毛概': {
-      return mao[id];
+      return mao[id - 1];
     }
   }
 }

@@ -35,6 +35,12 @@ export default () => {
           >
             <Cell title="功能建议" />
           </Link>
+          <Link
+            target="_blank"
+            to="https://matrix.to/#/!ALuGKuaRUlsvvmAgsr:matrix.org?via=matrix.org"
+          >
+            <Cell title="交流讨论" />
+          </Link>
           <Cell
             title="检查更新"
             value={
