@@ -4,23 +4,19 @@ import { BrowserRouter } from 'react-router-dom';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import Router from './router';
-import InitSentry from './utli/sentry'
+import InitSentry from './utli/sentry';
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 InitSentry();
 root.render(
   <React.StrictMode>
-        <main>
-          <BrowserRouter>
-            <Router />
-          </BrowserRouter>
-        </main>
-
+    <main>
+      <BrowserRouter>
+        <Router />
+      </BrowserRouter>
+    </main>
   </React.StrictMode>
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals(console.log);

@@ -1,3 +1,2 @@
-import './mao.json'
-import './marx.json'
-
+import './mao.json';
+import './marx.json';

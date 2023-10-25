@@ -1,15 +1,16 @@
 body {
   margin: 0;
-  font-family: -apple-system,BlinkMacSystemFont,Helvetica Neue,PingFang SC,Microsoft YaHei,Source Han Sans SC,Noto Sans CJK SC,WenQuanYi Micro Hei,'Noto Serif SC',sans-serif !important;
+  font-family: -apple-system, BlinkMacSystemFont, Helvetica Neue, PingFang SC,
+    Microsoft YaHei, Source Han Sans SC, Noto Sans CJK SC, WenQuanYi Micro Hei,
+    "Noto Serif SC", sans-serif !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
-
 
 @media (max-width: 768px) {
   .container {
