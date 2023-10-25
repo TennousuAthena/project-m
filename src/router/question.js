@@ -1,6 +1,14 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Card } from 'react-vant';
-import { Pagination, Divider, Form, Selector, Badge } from 'react-vant';
+import {
+  Pagination,
+  Divider,
+  Form,
+  Selector,
+  Tag,
+  Sticky,
+  Empty,
+} from 'react-vant';
 import { useNavigate, useLocation } from 'react-router-dom';
 
 import { questionData, getQuestionLen } from '../data';
@@ -16,7 +24,7 @@ export default function Question(props) {
 
   const [page, setPage] = useState(initPage);
   if (initPage >= pageCount) {
-    return <>题目去哪了</>;
+    return <Empty image="search" description="题目去哪了" />;
   }
 
   let pageData = questionData(props.subject, '', page);
@@ -40,10 +48,12 @@ export default function Question(props) {
   Title(pageData.Description + ' ' + props.subject + props.mode);
 
   return (
-    <>
+    <div>
       <Card round>
         <Card.Header>
-          <Badge content="单选" style={{ marginRight: '1em' }}></Badge>
+          <Tag type="primary" style={{ marginRight: '1em' }}>
+            单选
+          </Tag>
           {pageData.Description}
         </Card.Header>
         <Card.Body>
@@ -57,14 +67,16 @@ export default function Question(props) {
 
       <Divider />
 
-      <Pagination
-        value={page}
-        mode="simple"
-        onChange={setPage}
-        pageCount={getQuestionLen()[props.subject]}
-        prevText="上一题"
-        nextText="下一题"
-      />
-    </>
+      <Sticky position="bottom" offsetBottom={50}>
+        <Pagination
+          value={page}
+          mode="simple"
+          onChange={setPage}
+          pageCount={getQuestionLen()[props.subject]}
+          prevText="上一题"
+          nextText="下一题"
+        />
+      </Sticky>
+    </div>
   );
 }

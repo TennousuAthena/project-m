@@ -26,7 +26,7 @@ export default function Layout(props) {
           搜题
         </Tabbar.Item>
         <Tabbar.Item icon={<NotesO />} onClick={() => Toast('敬请期待')}>
-          错题本
+          小本本
         </Tabbar.Item>
         <Tabbar.Item icon={<SettingO />} onClick={() => navigate('/settings')}>
           设置

@@ -1,5 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
-import { Space, Flex } from 'react-vant';
+import { Space, Flex, Empty } from 'react-vant';
 
 import Layout from './layout';
 import ReactComponent from './myReact';
@@ -68,7 +68,7 @@ function Router() {
               path="*"
               element={
                 <div>
-                  <h2>404 Page not found</h2>
+                  <Empty description="404 Not Found" />
                 </div>
               }
             />

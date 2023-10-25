@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Search } from 'react-vant';
+import { Search, Empty } from 'react-vant';
 import { useNavigate, useLocation } from 'react-router-dom';
 
 import Title from '../router/DomTitle';
@@ -33,6 +33,7 @@ export default () => {
         }}
         placeholder="请输入搜索关键词"
       />
+      <Empty image="search" description="暂无结果" />
     </>
   );
 };
