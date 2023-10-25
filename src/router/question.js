@@ -27,8 +27,19 @@ export default function Question(props) {
   const navigate = useNavigate();
   const pageCount = getQuestionLen()[props.subject];
 
-  const [page, setPage] = useState(initPage);
   const [seeAns, setSeeAns] = useLocalStorage('seeAns', true);
+  const [lastPage, setLastPage] = useLocalStorage('lastPage', {
+    马原: 0,
+    毛概: 0,
+  });
+  if (initPage == 0) {
+    if (!lastPage[props.subject]) {
+      initPage = 1;
+    } else {
+      initPage = lastPage[props.subject];
+    }
+  }
+  const [page, setPage] = useState(initPage);
 
   if (initPage > pageCount) {
     return <Empty image="search" description="题目去哪了" />;
@@ -37,6 +48,14 @@ export default function Question(props) {
   const formRef = useRef(null);
   useEffect(() => {
     navigate(`${subloc}/${page}`);
+    switch (props.subject) {
+      case '马原':
+        setLastPage({ 马原: page, 毛概: lastPage.毛概 });
+        break;
+      case '毛概':
+        setLastPage({ 马原: lastPage.马原, 毛概: page });
+        break;
+    }
     if (formRef.current) {
       formRef.current.resetFields();
     }

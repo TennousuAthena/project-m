@@ -68,7 +68,7 @@ function ButtonGroup(props) {
         round
         color="linear-gradient(to right, rgb(54, 209, 220), rgb(91, 134, 229))"
         size="small"
-        onClick={() => navigate(`${props.subject}/顺序/1`)}
+        onClick={() => navigate(`${props.subject}/顺序/0`)}
       >
         顺序练习
       </Button>
