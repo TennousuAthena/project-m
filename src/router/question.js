@@ -42,6 +42,10 @@ export default function Question(props) {
     }
   }, [page]);
 
+  useEffect(() => {
+    console.log(seeAns);
+  }, [seeAns, setSeeAns]);
+
   //获取题目信息
   const pageData = getQuestionData(props.subject, '', page);
   const isSingleChoice = pageData.Answer.length == 1;
@@ -85,6 +89,7 @@ export default function Question(props) {
           <Button
             icon={seeAns ? <ClosedEye /> : <EyeO />}
             onClick={() => {
+              formRef.current.resetFields();
               setSeeAns(!seeAns);
             }}
             color={
