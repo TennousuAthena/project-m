@@ -1,15 +1,19 @@
 import { Cell, Card, Divider } from 'react-vant';
 import { Link } from 'react-router-dom';
 // import { Replay }  from "@react-vant/icons";
-import { Space, Badge } from 'react-vant';
+import { Space, Badge, Switch } from 'react-vant';
 
 export default () => {
   return (
-    <>
+    <div className="settings-panel">
       <Card round>
         <Cell.Group>
           <Cell title="云同步" />
           <Cell title="云服务隐私政策" />
+          <Cell
+            title="上报调试信息"
+            value={<Switch size="1em" defaultChecked />}
+          />
         </Cell.Group>
       </Card>
       <Divider />
@@ -41,6 +45,6 @@ export default () => {
           <Cell title="关于" label="Project M" />
         </Cell.Group>
       </Card>
-    </>
+    </div>
   );
 };

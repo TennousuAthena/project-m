@@ -2,9 +2,8 @@ import 'reset-css';
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import ReactDOM from 'react-dom/client';
-import './index.css';
 import Router from './router';
-import InitSentry from './utli/sentry';
+import InitSentry from './util/sentry';
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

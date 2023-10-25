@@ -6,6 +6,7 @@ import ReactComponent from './myReact';
 import Home from './home';
 import Question from './question';
 import Settings from '../settings';
+import Search from '../page/search';
 
 function Router() {
   return (
@@ -28,18 +29,22 @@ function Router() {
             <Route path="/react" element={<ReactComponent />} />
 
             <Route path="/马原">
-              <Route path="顺序/:id" element={<Question />} />
-              <Route path="随机/:id" element={<Question />} />
-              <Route path="测验/:id" element={<Question />} />
+              <Route path="顺序/:id" element={<Question subject="马原" />} />
+              <Route path="随机/:id" element={<Question subject="马原" />} />
+              <Route path="测验/:id" element={<Question subject="马原" />} />
             </Route>
 
             <Route path="/毛概">
-              <Route path="顺序/:id" element={<Question />} />
-              <Route path="随机/:id" element={<Question />} />
-              <Route path="测验/:id" element={<Question />} />
+              <Route path="顺序/:id" element={<Question subject="毛概" />} />
+              <Route path="随机/:id" element={<Question subject="毛概" />} />
+              <Route path="测验/:id" element={<Question subject="毛概" />} />
             </Route>
 
             <Route path="/settings" element={<Settings />}></Route>
+
+            <Route path="/search/" element={<Search />}>
+              <Route path="/search/:q" element={<Search />} />
+            </Route>
 
             <Route
               path="*"

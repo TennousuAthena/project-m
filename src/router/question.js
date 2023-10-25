@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Card } from 'react-vant';
-import { Pagination, Divider } from 'react-vant';
+import { Pagination, Divider, Form, Selector, Badge } from 'react-vant';
 import { useNavigate, useLocation } from 'react-router-dom';
+
+import { questionData, getQuestionLen } from '../data';
 
 export default function Question(props) {
   const location = useLocation();
@@ -9,16 +11,40 @@ export default function Question(props) {
   let initPage = parseInt(locarr.pop(), 10);
   const subloc = locarr.join('/');
   const navigate = useNavigate();
+  const pageCount = getQuestionLen()[props.subject];
+
   const [page, setPage] = useState(initPage);
+  if (initPage >= pageCount) {
+    return <>题目去哪了</>;
+  }
+
+  let pageData = questionData(props.subject, '', page);
 
   useEffect(() => {
     navigate(`${subloc}/${page}`);
   }, [page, navigate]);
+
+  const options = pageData.Choice.map((item, index) => {
+    const label = item;
+    const value = String.fromCharCode(65 + index); // 使用String.fromCharCode将索引转换为对应的字母(A, B, C, D, ...)
+
+    return { label, value };
+  });
+
   return (
     <>
       <Card round>
-        <Card.Header>圆角卡片</Card.Header>
-        <Card.Body>卡片内容区域</Card.Body>
+        <Card.Header>
+          <Badge content="单选" style={{ marginRight: '1em' }}></Badge>
+          {pageData.Description}
+        </Card.Header>
+        <Card.Body>
+          <Form layout="vertical">
+            <Form.Item name="single">
+              <Selector options={options} />
+            </Form.Item>
+          </Form>
+        </Card.Body>
       </Card>
 
       <Divider />
@@ -27,7 +53,7 @@ export default function Question(props) {
         value={page}
         mode="simple"
         onChange={setPage}
-        pageCount={129}
+        pageCount={getQuestionLen()[props.subject]}
         prevText="上一题"
         nextText="下一题"
       />
