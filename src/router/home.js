@@ -11,7 +11,11 @@ import {
 } from 'react-vant';
 import { useNavigate } from 'react-router-dom';
 
+import Title from './DomTitle';
+
 export default function Home() {
+  Title('Project M');
+
   return (
     <div>
       <Typography.Title level={1}>

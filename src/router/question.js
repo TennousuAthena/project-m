@@ -4,6 +4,7 @@ import { Pagination, Divider, Form, Selector, Badge } from 'react-vant';
 import { useNavigate, useLocation } from 'react-router-dom';
 
 import { questionData, getQuestionLen } from '../data';
+import Title from './DomTitle';
 
 export default function Question(props) {
   const location = useLocation();
@@ -35,6 +36,8 @@ export default function Question(props) {
   });
 
   const formRef = useRef(null);
+
+  Title(pageData.Description + ' ' + props.subject + props.mode);
 
   return (
     <>

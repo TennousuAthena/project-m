@@ -3,7 +3,10 @@ import { Link } from 'react-router-dom';
 // import { Replay }  from "@react-vant/icons";
 import { Space, Badge, Switch } from 'react-vant';
 
+import Title from '../router/DomTitle';
+
 export default () => {
+  Title('设置');
   return (
     <div className="settings-panel">
       <Card round>

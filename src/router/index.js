@@ -29,15 +29,33 @@ function Router() {
             <Route path="/react" element={<ReactComponent />} />
 
             <Route path="/马原">
-              <Route path="顺序/:id" element={<Question subject="马原" />} />
-              <Route path="随机/:id" element={<Question subject="马原" />} />
-              <Route path="测验/:id" element={<Question subject="马原" />} />
+              <Route
+                path="顺序/:id"
+                element={<Question subject="马原" mode="顺序" />}
+              />
+              <Route
+                path="随机/:id"
+                element={<Question subject="马原" mode="随机" />}
+              />
+              <Route
+                path="测验/:id"
+                element={<Question subject="马原" mode="测验" />}
+              />
             </Route>
 
             <Route path="/毛概">
-              <Route path="顺序/:id" element={<Question subject="毛概" />} />
-              <Route path="随机/:id" element={<Question subject="毛概" />} />
-              <Route path="测验/:id" element={<Question subject="毛概" />} />
+              <Route
+                path="顺序/:id"
+                element={<Question subject="毛概" mode="顺序" />}
+              />
+              <Route
+                path="随机/:id"
+                element={<Question subject="毛概" mode="随机" />}
+              />
+              <Route
+                path="测验/:id"
+                element={<Question subject="毛概" mode="测验" />}
+              />
             </Route>
 
             <Route path="/settings" element={<Settings />}></Route>
