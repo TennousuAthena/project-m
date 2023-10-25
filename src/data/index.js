@@ -5,7 +5,7 @@ function getQuestionLen() {
   return { 毛概: mao.length, 马原: marx.length };
 }
 
-function questionData(subject, showMode, id) {
+function getQuestionData(subject, showMode, id) {
   switch (subject) {
     case '马原': {
       return marx[id - 1];
@@ -16,4 +16,4 @@ function questionData(subject, showMode, id) {
   }
 }
 
-export { questionData, getQuestionLen };
+export { getQuestionData, getQuestionLen };

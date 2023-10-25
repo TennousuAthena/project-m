@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { StarO, Star, Upgrade, EyeO } from '@react-vant/icons';
+import { StarO, Star, Upgrade, EyeO, ClosedEye } from '@react-vant/icons';
 import {
   Card,
   Pagination,
@@ -9,16 +9,17 @@ import {
   Tag,
   Sticky,
   Empty,
-  Space,
   Button,
   Slider,
 } from 'react-vant';
 import { useNavigate, useLocation } from 'react-router-dom';
+import { useLocalStorage } from '@uidotdev/usehooks';
 
-import { questionData, getQuestionLen } from '../data';
+import { getQuestionData, getQuestionLen } from '../data';
 import Title from './DomTitle';
 
 export default function Question(props) {
+  //计算并双向绑定当前id
   const location = useLocation();
   let locarr = location.pathname.split('/');
   let initPage = parseInt(locarr.pop(), 10);
@@ -27,31 +28,33 @@ export default function Question(props) {
   const pageCount = getQuestionLen()[props.subject];
 
   const [page, setPage] = useState(initPage);
+  const [seeAns, setSeeAns] = useLocalStorage('drawing', null);
+
   if (initPage > pageCount) {
     return <Empty image="search" description="题目去哪了" />;
   }
 
-  let pageData = questionData(props.subject, '', page);
-  const isSingleChoice = pageData.Answer.length == 1;
-  console.log(pageData)
-
+  const formRef = useRef(null);
   useEffect(() => {
     navigate(`${subloc}/${page}`);
-
     if (formRef.current) {
       formRef.current.resetFields();
     }
-  }, [page, navigate]);
+  }, [page]);
 
+  //获取题目信息
+  const pageData = getQuestionData(props.subject, '', page);
+  const isSingleChoice = pageData.Answer.length == 1;
+  const Answer = pageData.Answer.split('');
+  Title(pageData.Description + ' ' + props.subject + props.mode);
+  console.log(pageData);
+
+  //处理选项
   const options = pageData.Choice.map((item, index) => {
     const label = item;
     const value = String.fromCharCode(65 + index); // 使用String.fromCharCode将索引转换为对应的字母(A, B, C, D, ...)
     return { label, value };
   });
-
-  const formRef = useRef(null);
-
-  Title(pageData.Description + ' ' + props.subject + props.mode);
 
   return (
     <div style={{ height: 'calc(100vh - 110px)' }}>
@@ -63,7 +66,13 @@ export default function Question(props) {
         <Card.Body>
           <Form ref={formRef} layout="horizontal">
             <Form.Item name="single">
-              <Selector options={options} multiple={!isSingleChoice}></Selector>
+              <Selector
+                defaultValue={!seeAns ? Answer : []}
+                options={options}
+                multiple={!isSingleChoice}
+                className={seeAns ? 'show-answers' : ''}
+                key={seeAns}
+              ></Selector>
             </Form.Item>
           </Form>
         </Card.Body>
@@ -73,7 +82,19 @@ export default function Question(props) {
 
       <Sticky offsetTop={'75vh'}>
         <Button.Group block style={{ width: '100%' }}>
-          <Button icon={<EyeO />}>看答案</Button>
+          <Button
+            icon={seeAns ? <ClosedEye /> : <EyeO />}
+            onClick={() => {
+              setSeeAns(!seeAns);
+            }}
+            color={
+              seeAns
+                ? ''
+                : 'linear-gradient(to right, rgb(75, 108, 183), rgb(24, 40, 72))'
+            }
+          >
+            {seeAns ? '不答案' : '看答案'}
+          </Button>
           <Button icon={<StarO />}>记本本</Button>
           <Button icon={<Upgrade />}>提交</Button>
         </Button.Group>
@@ -82,7 +103,7 @@ export default function Question(props) {
           value={page}
           mode="simple"
           onChange={setPage}
-          pageCount={getQuestionLen()[props.subject]}
+          pageCount={pageCount}
           prevText="上一题"
           nextText="下一题"
         />
@@ -90,7 +111,7 @@ export default function Question(props) {
 
         <Slider
           min={1}
-          max={getQuestionLen()[props.subject]}
+          max={pageCount}
           button={<div className="custom-slider-button">{page}</div>}
           value={page}
           onChange={setPage}
@@ -101,16 +122,17 @@ export default function Question(props) {
 }
 
 const ChoiceTag = (props) => {
-  if(props.single){
-    return (  <Tag type="primary" style={{ marginRight: '1em', marginBottom: '0.5em' }}>
-    单选
-  </Tag>);
-  }else{
-    return(
-    <Tag type="warning" style={{ marginRight: '1em', marginBottom: '0.5em' }}>
-    多选
-  </Tag>
-    )
+  if (props.single) {
+    return (
+      <Tag type="primary" style={{ marginRight: '1em', marginBottom: '0.5em' }}>
+        单选
+      </Tag>
+    );
+  } else {
+    return (
+      <Tag type="warning" style={{ marginRight: '1em', marginBottom: '0.5em' }}>
+        多选
+      </Tag>
+    );
   }
-
-}
+};
