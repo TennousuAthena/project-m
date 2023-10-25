@@ -52,7 +52,7 @@ export default function Question(props) {
   Title(pageData.Description + ' ' + props.subject + props.mode);
 
   return (
-    <div>
+    <div style={{ height: 'calc(100vh - 110px)' }}>
       <Card round>
         <Card.Header>
           <Tag type="primary" style={{ marginRight: '1em' }}>
@@ -71,13 +71,13 @@ export default function Question(props) {
 
       <Divider />
 
-      <Button.Group block style={{ width: '100%' }}>
-        <Button icon={<EyeO />}>看答案</Button>
-        <Button icon={<StarO />}>记本本</Button>
-        <Button icon={<Upgrade />}>提交</Button>
-      </Button.Group>
-      <div style={{ height: '1em' }}></div>
-      <Sticky position="bottom" offsetBottom={50}>
+      <Sticky offsetTop={'75vh'}>
+        <Button.Group block style={{ width: '100%' }}>
+          <Button icon={<EyeO />}>看答案</Button>
+          <Button icon={<StarO />}>记本本</Button>
+          <Button icon={<Upgrade />}>提交</Button>
+        </Button.Group>
+        <div style={{ height: '1em' }}></div>
         <Pagination
           value={page}
           mode="simple"
@@ -86,16 +86,16 @@ export default function Question(props) {
           prevText="上一题"
           nextText="下一题"
         />
-      </Sticky>
-      <div style={{ height: '1em' }}></div>
+        <div style={{ height: '1em' }}></div>
 
-      <Slider
-        min={0}
-        max={getQuestionLen()[props.subject]}
-        button={<div className="custom-slider-button">{page}</div>}
-        value={page}
-        onChange={setPage}
-      />
+        <Slider
+          min={1}
+          max={getQuestionLen()[props.subject]}
+          button={<div className="custom-slider-button">{page}</div>}
+          value={page}
+          onChange={setPage}
+        />
+      </Sticky>
     </div>
   );
 }

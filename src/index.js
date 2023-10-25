@@ -6,7 +6,7 @@ import '@vant/touch-emulator';
 
 import Router from './router';
 import InitSentry from './util/sentry';
-import reportWebVitals from './reportWebVitals';
+// import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 InitSentry();
@@ -20,4 +20,4 @@ root.render(
   </React.StrictMode>
 );
 
-reportWebVitals(console.log);
+// reportWebVitals(console.log);
