@@ -11,6 +11,7 @@ export default () => {
     <div className="settings-panel">
       <Card round>
         <Cell.Group>
+          <Cell title="学习记录" />
           <Cell title="云同步" />
           <Cell title="云服务隐私政策" />
           <Cell

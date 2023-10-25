@@ -12,10 +12,21 @@ code {
     monospace;
 }
 
+.custom-slider-button {
+  width: 26px;
+  color: #fff;
+  font-size: 10px;
+  line-height: 18px;
+  text-align: center;
+  background-color: #3f45ff;
+  border-radius: 100px;
+  user-select: none;
+}
+
 /* 移动设备 */
 @media (max-width: 768px) {
   .container {
-    max-width: 768px; /* 或适当的宽度 */
+    max-width: 768px;
     margin: 0 auto; /* 居中内容 */
   }
   .rv-card-footer {

@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Card } from 'react-vant';
+import { StarO, Star, Upgrade, EyeO } from '@react-vant/icons';
 import {
+  Card,
   Pagination,
   Divider,
   Form,
@@ -8,6 +9,9 @@ import {
   Tag,
   Sticky,
   Empty,
+  Space,
+  Button,
+  Slider,
 } from 'react-vant';
 import { useNavigate, useLocation } from 'react-router-dom';
 
@@ -59,7 +63,7 @@ export default function Question(props) {
         <Card.Body>
           <Form ref={formRef} layout="horizontal">
             <Form.Item name="single">
-              <Selector options={options} />
+              <Selector options={options}></Selector>
             </Form.Item>
           </Form>
         </Card.Body>
@@ -67,6 +71,12 @@ export default function Question(props) {
 
       <Divider />
 
+      <Button.Group block style={{ width: '100%' }}>
+        <Button icon={<EyeO />}>看答案</Button>
+        <Button icon={<StarO />}>记本本</Button>
+        <Button icon={<Upgrade />}>提交</Button>
+      </Button.Group>
+      <div style={{ height: '1em' }}></div>
       <Sticky position="bottom" offsetBottom={50}>
         <Pagination
           value={page}
@@ -77,6 +87,15 @@ export default function Question(props) {
           nextText="下一题"
         />
       </Sticky>
+      <div style={{ height: '1em' }}></div>
+
+      <Slider
+        min={0}
+        max={getQuestionLen()[props.subject]}
+        button={<div className="custom-slider-button">{page}</div>}
+        value={page}
+        onChange={setPage}
+      />
     </div>
   );
 }
