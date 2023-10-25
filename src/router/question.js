@@ -66,14 +66,14 @@ export default function Question(props) {
   }, [seeAns, setSeeAns]);
 
   //获取题目信息
-  const pageData = getQuestionData(props.subject, '', page);
+  const pageData = getQuestionData(props.subject, props.mode, page);
   const isSingleChoice = pageData.Answer.length == 1;
   const Answer = pageData.Answer.split('');
   Title(pageData.Description + ' ' + props.subject + props.mode);
   console.log(pageData);
 
   //处理选项
-  const options = pageData.Choice.map((item, index) => {
+  let options = pageData.Choice.map((item, index) => {
     const label = item;
     const value = String.fromCharCode(65 + index); // 使用String.fromCharCode将索引转换为对应的字母(A, B, C, D, ...)
     return { label, value };

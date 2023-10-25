@@ -77,7 +77,7 @@ function ButtonGroup(props) {
         round
         color="linear-gradient(to right, rgb(178, 69, 146), rgb(241, 95, 121))"
         size="small"
-        onClick={() => Toast.info(props.subject + '随机练习功能 即将完成')}
+        onClick={() => navigate(`${props.subject}/随机/0`)}
       >
         随机练习
       </Button>
