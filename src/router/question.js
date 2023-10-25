@@ -28,7 +28,7 @@ export default function Question(props) {
   const pageCount = getQuestionLen()[props.subject];
 
   const [page, setPage] = useState(initPage);
-  const [seeAns, setSeeAns] = useLocalStorage('drawing', null);
+  const [seeAns, setSeeAns] = useLocalStorage('seeAns', true);
 
   if (initPage > pageCount) {
     return <Empty image="search" description="题目去哪了" />;
