@@ -6,9 +6,11 @@ import '@vant/touch-emulator';
 
 import Router from './router';
 import InitSentry from './util/sentry';
+import localStorage from './settings/localStorage';
 // import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+localStorage.init();
 InitSentry();
 root.render(
   <React.StrictMode>

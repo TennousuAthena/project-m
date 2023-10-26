@@ -2,11 +2,17 @@ import { Cell, Card, Divider } from 'react-vant';
 import { Link } from 'react-router-dom';
 // import { Replay }  from "@react-vant/icons";
 import { Space, Badge, Switch } from 'react-vant';
+import { useLocalStorage } from '@uidotdev/usehooks';
 
 import Title from '../router/DomTitle';
+import localStorage from '../settings/localStorage';
 
 export default () => {
   Title('设置');
+  const [localSettings, setLocalSettings] = useLocalStorage(
+    'settings',
+    localStorage.defaultSettings
+  );
   return (
     <div className="settings-panel">
       <Card round>
@@ -16,7 +22,7 @@ export default () => {
           <Cell title="云服务隐私政策" />
           <Cell
             title="上报调试信息"
-            value={<Switch size="1em" defaultChecked />}
+            value={<Switch size="1em" value={localSettings.reportDebug} />}
           />
         </Cell.Group>
       </Card>
